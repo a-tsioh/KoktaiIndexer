@@ -114,15 +114,18 @@ class MyClient {
   }
 
   def searchExample() = {
-    val req = new SearchRequest(CharDecl.indexName)
-    req.types(CharDecl.docType)
+    val req = new SearchRequest(Word.indexName)
+    req.types(Word.docType)
     val reqSource = new SearchSourceBuilder()
-    reqSource.query(QueryBuilders.matchQuery("name", "TSU"))
+    val bq = QueryBuilders.boolQuery()
+    bq.must(QueryBuilders.multiMatchQuery("好","orth", "definition"))
+    reqSource.query(bq)
+      //QueryBuilders.matchQuery("name", "TSU"))
     req.source(reqSource)
     val result = client.search(req)
     val hits = result.getHits.getHits
     for( hit <- hits) {
-      val c = CharDecl.fromJson(hit.getSourceAsString)
+      val c = Word.fromJson(hit.getSourceAsString)
       println(c)
     }
   }
