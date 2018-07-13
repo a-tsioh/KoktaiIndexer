@@ -26,8 +26,7 @@ class MainController @Inject()(cc: ControllerComponents, assets: Assets) extends
                 《國臺對照活用辭典》
               </a>
               <div class="ui item">
-                <div class="ui icon input">
-                  <input placeholder="Search..." type="text"></input>
+                <div class="ui icon input" id="search_input">
                   <i class="search link icon"></i>
                 </div>
               </div>
@@ -41,6 +40,14 @@ class MainController @Inject()(cc: ControllerComponents, assets: Assets) extends
           <div class="ui transparent main text container" >
             <div class="ui transparent vertical masthead center aligned segment">
               <h1 class="ui inverted header">國臺對照活用辭典</h1>
+              <h2 class="ui inverted header">原作者為吳守禮教授</h2>
+
+                <div class="ui segment">
+                  <p>除原始資料外，此檔案庫內轉換格式、重新編排的編輯著作權（如果有的話）皆以 CC0 釋出，衍生著作物應以原始資料之授權為準。</p>
+                <p>《吳守禮國台對照活用辭典》作者：吳守禮（Ngo ShuLeh、Wu Shouli） ，本網站資料由吳守禮家族授權中華民國維基媒體協會，以創用CC 姓名標示-相同方式分享 3.0 台灣 授權條款釋出。</p>
+                  <div class="ui image"><img src="/assets/images/by-sa.svg"></img></div>
+                </div>
+
             </div>
           </div>
           <script src="/assets/client-fastopt.js" type="text/javascript">

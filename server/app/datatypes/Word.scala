@@ -4,6 +4,7 @@ import scala.xml.Node
 import upickle.default.{readJs, writeJs}
 
 
+
 case class Word(
                  form: String,
                  orth: String,

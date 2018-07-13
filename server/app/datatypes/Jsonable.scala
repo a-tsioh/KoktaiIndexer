@@ -1,6 +1,6 @@
 package datatypes
 
-import upickle.default.{readJs, writeJs}
+//import upickle.default.{readJs, writeJs}
 
 
 // trait for case classes

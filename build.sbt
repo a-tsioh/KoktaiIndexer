@@ -39,7 +39,10 @@ lazy val client = (project in file("client")).settings(commonSettings).settings(
     "io.suzaku" %%% "boopickle" % "1.3.0",
     "com.lihaoyi" %%% "ujson" % "0.6.6",
     "com.lihaoyi" %%% "scalatags" % "0.6.7",
-    "com.lihaoyi" %%% "autowire" % "0.2.6"
+    "com.lihaoyi" %%% "autowire" % "0.2.6",
+    //"com.lihaoyi" %%% "upickle" % "0.4.4",
+    "org.scala-lang.modules" % "scala-xml_2.12" % "1.0.6",
+    "io.suzaku" %%% "diode-core" % "1.1.3"
     //"com.definitelyscala" %%% "scala-js-yamljs" % "1.1.0"
   )
 ).enablePlugins(ScalaJSPlugin, ScalaJSWeb).

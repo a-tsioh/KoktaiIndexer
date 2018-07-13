@@ -1,6 +1,7 @@
 package datatypes
 import scala.xml.Node
 
+
 import upickle.default.{readJs, writeJs}
 
 case class Chapter(
