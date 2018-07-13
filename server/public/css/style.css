@@ -1,0 +1,9 @@
+body {
+    background: url(/assets/images/small-bg.jpg) no-repeat bottom center scroll ;
+    background-size: cover;
+    width: 100%;
+}
+
+.main.container {
+    margin-top: 5em;
+}
