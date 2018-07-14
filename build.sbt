@@ -17,7 +17,7 @@ lazy val server = (project in file("server")).settings(commonSettings).settings(
   compile in Compile := ((compile in Compile) dependsOn scalaJSPipeline).value,
   libraryDependencies ++= Seq(
     guice,
-    "org.scala-lang.modules" % "scala-xml_2.12" % "1.0.6",
+    "org.scala-lang.modules" %% "scala-xml" % "1.1.0",
     "com.lihaoyi" %% "ujson" % "0.6.6",
     "com.lihaoyi" %% "upickle" % "0.4.4",
     //"org.elasticsearch" % "elasticsearch" % "2.3.2",
@@ -35,13 +35,14 @@ lazy val client = (project in file("client")).settings(commonSettings).settings(
   //resolvers += Resolver.jcenterRepo,
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "0.9.5",
+    "org.elasticsearch.client" % "elasticsearch-rest-high-level-client" % "6.3.1",
     //"com.lihaoyi" %%% "upickle" % "0.6.6",
     "io.suzaku" %%% "boopickle" % "1.3.0",
     "com.lihaoyi" %%% "ujson" % "0.6.6",
     "com.lihaoyi" %%% "scalatags" % "0.6.7",
     "com.lihaoyi" %%% "autowire" % "0.2.6",
     //"com.lihaoyi" %%% "upickle" % "0.4.4",
-    "org.scala-lang.modules" % "scala-xml_2.12" % "1.0.6",
+    //"org.scala-lang.modules" %%% "scala-xml" % "1.1.0",
     "io.suzaku" %%% "diode-core" % "1.1.3"
     //"com.definitelyscala" %%% "scala-js-yamljs" % "1.1.0"
   )

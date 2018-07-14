@@ -1,7 +1,9 @@
+package models
+
 import java.net.InetAddress
 
-import datatypes._
 import org.apache.http.HttpHost
+import org.apache.lucene.queryparser.flexible.core.builders.QueryBuilder
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest
@@ -16,6 +18,8 @@ import org.elasticsearch.index.query.QueryBuilders
 import org.elasticsearch.search.builder.SearchSourceBuilder
 
 import scala.xml.{Elem, Node, XML}
+
+import datatypes.{Word, Jsonable, Chapter, Sinogram, CharDecl, Indexable, KokTaiRecord}
 
 
 class MyClient {
@@ -112,6 +116,41 @@ class MyClient {
     indexAllSinograms(x)
     indexAllWords(x)
   }
+
+
+  def searchWords(query: String): Seq[Word] = {
+    val req = new SearchRequest(Word.indexName)
+    req.types(Word.docType)
+    val reqSource = new SearchSourceBuilder()
+    reqSource.query(QueryBuilders.matchQuery("orth", query))
+    req.source(reqSource)
+    val result = client.search(req)
+    (for(hit <- result.getHits.getHits) yield Word.fromJson(hit.getSourceAsString)).toList.flatten
+  }
+
+  def searchCombined(query: String) = {
+    val req = new SearchRequest()
+    val reqSource = new SearchSourceBuilder()
+    reqSource.query(
+      QueryBuilders.multiMatchQuery(query, "orth", "words", "definition")
+        .field("orth", 3.0f)
+        .field("words", 2.0f)
+        .field("definition",1.0f)
+        .`type`("phrase")
+
+    )
+    reqSource.size(40)
+    req.source(reqSource)
+    val result = client.search(req)
+    (for(hit <- result.getHits.getHits) yield {
+      hit.getType match {
+        case "word" => Word.fromJson(hit.getSourceAsString)
+        case "sinogram" => Sinogram.fromJson(hit.getSourceAsString)
+        case _ => None
+      }
+    }).toList.flatten
+    }
+
 
   def searchExample() = {
     val req = new SearchRequest(Word.indexName)

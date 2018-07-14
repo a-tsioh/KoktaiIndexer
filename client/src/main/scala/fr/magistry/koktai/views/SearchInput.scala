@@ -11,10 +11,7 @@ class SearchInput(dispatch: Dispatcher) {
 
   def render = {
     val i = input(placeholder := "search...", `type` := "text").render
-    i.onchange = (_) => {
-      dom.window.alert("coucou")
-      dispatch(Search(i.value))
-    }
+    i.onchange = (_) => { dispatch(Search(i.value)) }
     i
   }
 }
