@@ -22,7 +22,7 @@ import scala.xml.{Elem, Node, XML}
 import datatypes.{Word, Jsonable, Chapter, Sinogram, CharDecl, Indexable, KokTaiRecord}
 
 
-class MyClient {
+class ElasticSerchClient {
 
   val client: RestHighLevelClient =
     new RestHighLevelClient(
@@ -109,8 +109,8 @@ class MyClient {
     client.indices().putMapping(req)
   }
 
-  def test() = {
-    val x = XML.loadFile("/tmp/k.xml")
+  def indexFile(path:String) = {
+    val x = XML.loadFile(path)
     indexAllCharDecl(x)
     indexAllChapters(x)
     indexAllSinograms(x)
@@ -168,5 +168,7 @@ class MyClient {
       println(c)
     }
   }
+
+  def close(): Unit = client.close()
 
 }

@@ -68,7 +68,8 @@ class MainController @Inject()(cc: ControllerComponents, assets: Assets) extends
               </div>
             </div>
           </div>
-          <script src="/assets/client-fastopt.js" type="text/javascript">
+          <!--script src="/assets/client-fastopt.js" type="text/javascript"-->
+            <script src="/assets/client-opt.js" type="text/javascript">
 
           </script>
         </body>
