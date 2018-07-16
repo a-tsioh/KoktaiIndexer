@@ -13,13 +13,13 @@ class ResultsList(parentId: String, dispatch: Dispatcher) {
   protected val mainDiv = div(cls:="ui middle aligned divided selection list").render
 
   def clear(): Unit = {
-    $(parentId).transition("horizontal flip")
+    if(mainDiv.hasChildNodes()) $(parentId).transition("slide up out")
     while (mainDiv.hasChildNodes()) {
       mainDiv.removeChild(mainDiv.lastChild)
     }
   }
 
-  def show(): Unit = $(parentId).transition("horizontal flip")
+  def show(): Unit = $(parentId).transition("slide down in")
 
   def appendWord(w:api.Word): Unit = {
     println(w.form)
@@ -33,6 +33,8 @@ class ResultsList(parentId: String, dispatch: Dispatcher) {
   }
 
   def render = mainDiv
+
+  def registerSemUICallbacks():Unit = $(parentId).transition()
 
 
 

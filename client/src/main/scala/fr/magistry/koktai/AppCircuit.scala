@@ -69,6 +69,10 @@ object AppCircuit extends Circuit[RootModel]{
       case Select(w: api.Word) =>
         for(rv <- readerView) rv.showWord(w)
         noChange
+      case Select(s: api.Sinogram) =>
+        for(rv <- readerView) rv.showSinogram(s)
+        noChange
+
     }
   }
 

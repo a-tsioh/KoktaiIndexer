@@ -16,11 +16,21 @@ class ReaderView(dispatch: Dispatcher)  {
   def render() = seg
 
   def showWord(w: api.Word): Unit = {
-    while(seg.hasChildNodes()) seg.removeChild(seg.lastChild)
     val wp = new WordPage(dispatch, w)
-    seg.appendChild(wp.render)
+    show(wp)
+  }
+
+  def showSinogram(s: api.Sinogram): Unit = {
+    val sp = new SinogramPage(dispatch, s)
+    show(sp)
+  }
+
+  def show(p: Page): Unit = {
+    while(seg.hasChildNodes()) seg.removeChild(seg.lastChild)
+    seg.appendChild(p.render)
     $(".shape").shape("set next side", "#side_reader")
     $(".shape").shape("flip back")
+    p.registerSemUICallbacks()
   }
 
 }

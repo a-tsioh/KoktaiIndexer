@@ -3,16 +3,21 @@ package fr.magistry.koktai.views
 import diode.Dispatcher
 import scalatags.JsDom.all._
 
-class WordPage(dispatch: Dispatcher, w: api.Word)  {
+class WordPage(dispatch: Dispatcher, w: api.Word) extends Page {
+  val $ = scala.scalajs.js.Dynamic.global.$
 
   lazy val definition = {
     div(w.definition map {
       case api.SimpleText(t) => raw(t)
-      case api.Ruby(r,t,img) => div(
-        cls:="ruby_chr",
-        div(cls:="ruby_syl", r)
-      )
-      case api.KoktaiCJK(cjk,img) => raw(cjk)
+      case api.Ruby(r, img) =>
+        val syl = utils.TsuIm.splitTone(r)
+        div(
+          cls := "ruby_chr",
+          data("html"):= "<div class='content'><img src=\"/assets/" + img + "\"></img></div>",
+          div(cls := "ruby_syl", syl.seg),
+          div(cls := "ruby_tone", syl.tone)
+        )
+      case api.KoktaiCJK(cjk, img) => raw(cjk)
     })
 
   }
@@ -29,6 +34,8 @@ class WordPage(dispatch: Dispatcher, w: api.Word)  {
       )
     ).render
 
-  def render = content
+  override def render = content
+
+  override def registerSemUICallbacks():Unit = $(".ruby_chr").popup()
 
 }

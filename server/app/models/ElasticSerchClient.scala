@@ -18,8 +18,8 @@ import org.elasticsearch.index.query.QueryBuilders
 import org.elasticsearch.search.builder.SearchSourceBuilder
 
 import scala.xml.{Elem, Node, XML}
-
-import datatypes.{Word, Jsonable, Chapter, Sinogram, CharDecl, Indexable, KokTaiRecord}
+import datatypes.{Chapter, CharDecl, Indexable, Jsonable, KokTaiRecord, Sinogram, Word}
+import org.elasticsearch.action.get.GetRequest
 
 
 class ElasticSerchClient {
@@ -115,6 +115,14 @@ class ElasticSerchClient {
     indexAllChapters(x)
     indexAllSinograms(x)
     indexAllWords(x)
+  }
+
+
+  def getCharDecl(id: String): Option[CharDecl] = {
+    val req = new GetRequest(CharDecl.indexName, CharDecl.docType,id)
+    val result = client.get(req)
+    if(result.isExists) CharDecl.fromJson(result.getSourceAsString)
+    else None
   }
 
 

@@ -16,11 +16,22 @@ body {
 .ruby_chr {
     display: inline-block;
     width: 1em;
+    height: 1em;
 }
 
 .ruby_syl {
+
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+    text-indent: 0;
+    position: relative;
     display: inline-block;
-    width: 1px;
+    height: 1em;
+
+    vertical-align: text-top;
+    width: 1em;
     hyphens: auto;
     word-break: break-all;
     font-size: 0.4em;
@@ -28,4 +39,20 @@ body {
     vertical-align: text-top;
 }
 
-.ruby_tone{}
+.ruby_tone{
+font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+    text-indent: 0;
+    position: relative;
+    display: inline-block;
+    height: 1em;
+    width: .4em;
+    width: 1em;
+    hyphens: auto;
+    word-break: break-all;
+    font-size: 0.4em;
+    text-align: justify;
+    vertical-align: text-bottom;
+}

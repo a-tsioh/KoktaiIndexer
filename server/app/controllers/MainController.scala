@@ -32,14 +32,14 @@ class MainController @Inject()(cc: ControllerComponents, assets: Assets) extends
               </div>
               <div class="ui inverted right menu">
                 <a href="#" class="item" id="button_about">關於</a>
-                <a href="#" class="item">代序</a>
-                <a href="#" class="item">聯絡</a>
+                <a href="#" class="item" id="button_preface">代序</a>
+                <a href="#" class="item" id="button_contact">聯絡</a>
               </div>
             </div>
           </div>
           <div class="ui grid">
             <div class="four wide column">
-             <div class="ui bottom attached segment" id="sidebar">
+             <div class="ui bottom attached hidden segment" id="sidebar">
               </div>
             </div>
             <div class="twelve wide column">
@@ -62,6 +62,11 @@ class MainController @Inject()(cc: ControllerComponents, assets: Assets) extends
                   <div class="side" id="side_reader">
                     <div class="ui transparent main text container" id="main_zone">
                       <h1 class="ui inverted header">辭典內容</h1>
+                    </div>
+                  </div>
+                  <div class="side" id="side_preface">
+                    <div class="ui segment">
+                      <h1> preface goes here</h1>
                     </div>
                   </div>
                 </div>

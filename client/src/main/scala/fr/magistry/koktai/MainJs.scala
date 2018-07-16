@@ -28,11 +28,13 @@ object MainJs {
     val sidebar = dom.document.getElementById("sidebar")
     val resultsView = new views.ResultsList("#sidebar", AppCircuit)
     sidebar.appendChild(resultsView.render)
+    resultsView.registerSemUICallbacks()
 
 
     val main = dom.document.getElementById("main_zone")
     val readerView = new views.ReaderView(AppCircuit)
     main.appendChild(readerView.render)
+
 
 
     AppCircuit.registerResultList(resultsView)
@@ -44,6 +46,12 @@ object MainJs {
       $(".shape").shape("set next side", "#side_about")
       $(".shape").shape("flip back")
     })
+
+    $("#button_preface").click( () => {
+      $(".shape").shape("set next side", "#side_preface")
+      $(".shape").shape("flip back")
+    })
+
 
 
   }

@@ -20,7 +20,7 @@ class WordCard(dispatch: Dispatcher, word: api.Word) {
     div(
       cls:="content",
       h2(cls:="ui header", s"${word.orth}"),
-      s"${word.pron} [${word.pos}]")
+      s"[${word.pos}] ${word.pron}")
   ).render
 
 

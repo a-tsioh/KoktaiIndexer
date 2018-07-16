@@ -12,7 +12,10 @@ object ApiService extends api.SharedApi {
       case x if x.label == "#PCDATA" => api.SimpleText(x.text)
       case x if x.label == "g" =>
         if(x.attribute("ref").map(_.text.startsWith("ruby")).getOrElse(false)) {
-          api.Ruby(x.text,"Y","TODO")
+          esClient.getCharDecl(x.attribute("ref").get.text).map { cdl =>
+            api.Ruby(x.text,cdl.img)
+          }
+            .getOrElse(api.Ruby(x.text,""))
         }
         else api.KoktaiCJK(x.text,"Y")
     }
