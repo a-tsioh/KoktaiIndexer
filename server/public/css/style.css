@@ -11,3 +11,21 @@ body {
 #sidebar {
     margin-top: 5em;
 }
+
+
+.ruby_chr {
+    display: inline-block;
+    width: 1em;
+}
+
+.ruby_syl {
+    display: inline-block;
+    width: 1px;
+    hyphens: auto;
+    word-break: break-all;
+    font-size: 0.4em;
+    text-align: justify;
+    vertical-align: text-top;
+}
+
+.ruby_tone{}
