@@ -19,7 +19,7 @@ class WordCard(dispatch: Dispatcher, word: api.Word) {
     div(cls:="right floated large content", b),
     div(
       cls:="content",
-      h2(cls:="ui header", s"${word.orth}"),
+      h2(cls:="ui header", TextRenderer.divOfText(word.orth)),
       s"[${word.pos}] ${word.pron}")
   ).render
 

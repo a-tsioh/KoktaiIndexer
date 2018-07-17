@@ -19,7 +19,7 @@ class SinogramCard(dispatch: Dispatcher, sinogram: api.Sinogram) {
     div(cls:="right floated large content", b),
     div(
       cls:="content",
-      h2(cls:="ui header", s"${sinogram.orth}"),
+      h2(cls:="ui header", TextRenderer.divOfText(sinogram.orth)),
       s"${sinogram.pron}")
   ).render
 

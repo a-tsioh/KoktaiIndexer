@@ -5,29 +5,29 @@ import diode.Dispatcher
 import scalatags.JsDom.all._
 
 class SinogramPage(dispatch: Dispatcher, s: api.Sinogram) extends Page {
-
+  val $ = scala.scalajs.js.Dynamic.global.$
 
   protected val content =
     div(
       cls:="ui card",
       div(
         cls:="content",
-        div(cls:="header",s.orth),
+        div(cls:="header",TextRenderer.divOfText(s.orth)),
         div(cls:="meta",s.pron),
-        div(cls:="meta",s.comment),
+        div(cls:="meta",TextRenderer.divOfText(s.comment)),
         div(cls:="content",
           div(cls:="ui list",
             div(cls:="item",
               div(cls:="header","國音"),
-              s.guoyin
+              TextRenderer.divOfText(s.guoyin)
             ),
             div(cls:="item",
               div(cls:="header","台甘"),
-              s.taikam
+              TextRenderer.divOfText(s.taikam)
             ),
             div(cls:="item",
               div(cls:="header","普閩"),
-              s.phooban
+              TextRenderer.divOfText(s.phooban)
             )
           ),
           "詞",
@@ -41,6 +41,7 @@ class SinogramPage(dispatch: Dispatcher, s: api.Sinogram) extends Page {
 
   override def render() = content
 
-  override def registerSemUICallbacks(): Unit = ()
+  override def registerSemUICallbacks(): Unit =
+    $(".with_popup").popup()
 
 }
