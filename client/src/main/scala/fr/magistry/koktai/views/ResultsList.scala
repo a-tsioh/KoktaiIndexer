@@ -10,16 +10,28 @@ import scalatags.JsDom.all._
 class ResultsList(parentId: String, dispatch: Dispatcher) {
   val $ = scala.scalajs.js.Dynamic.global.$
 
+
   protected val mainDiv = div(cls:="ui middle aligned divided selection list").render
+  protected val dimmer = div(
+    cls:= "ui dimmer",
+    div(cls:="ui loader")).render
+  protected val segment = div(cls:="ui segment", mainDiv, dimmer).render
 
   def clear(): Unit = {
-    if(mainDiv.hasChildNodes()) $(parentId).transition("slide up out")
+    if(mainDiv.hasChildNodes()) $(parentId).transition("slide up out", "1000ms")
     while (mainDiv.hasChildNodes()) {
       mainDiv.removeChild(mainDiv.lastChild)
     }
   }
 
-  def show(): Unit = $(parentId).transition("slide down in")
+  def show(): Unit = {
+    dimmer.setAttribute("class", "ui dimmer ")
+    $(parentId).transition("slide down in", "1000ms")
+  }
+
+  def loading(): Unit = {
+    dimmer.setAttribute("class", "ui active dimmer")
+  }
 
   def appendWord(w:api.Word): Unit = {
     println(w.form)
@@ -32,7 +44,7 @@ class ResultsList(parentId: String, dispatch: Dispatcher) {
     mainDiv.appendChild(item)
   }
 
-  def render = mainDiv
+  def render = segment
 
   def registerSemUICallbacks():Unit = $(parentId).transition()
 

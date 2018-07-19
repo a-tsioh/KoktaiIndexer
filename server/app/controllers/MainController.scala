@@ -19,7 +19,7 @@ class MainController @Inject()(cc: ControllerComponents, assets: Assets) extends
 
         </head>
         <body>
-          <div class="ui fixed inverted menu">
+          <div class="ui fixed inverted big menu">
             <div class="ui container">
               <a href="#" class="header item">
                 <i class="ui book icon" ></i>

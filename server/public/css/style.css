@@ -56,3 +56,11 @@ font-style: normal;
     text-align: justify;
     vertical-align: text-bottom;
 }
+
+.ui .segment {
+    font-size: 1.5rem ;
+}
+
+.ui .menu {
+    font-size: 2 rem;
+}

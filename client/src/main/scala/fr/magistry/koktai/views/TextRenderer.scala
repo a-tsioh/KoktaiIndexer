@@ -13,7 +13,7 @@ object TextRenderer {
     div(t.map {
       case api.SimpleText(t) => raw(t)
       case api.Ruby(r, img) =>
-        val syl = utils.TsuIm.splitTone(r)
+        val syl = utils.TsuIm.splitTone(r.trim)
         div(
           cls := "ruby_chr with_popup",
           data("html"):= "<div class='content'><img src=\"/assets/" + img + "\"></img></div>",

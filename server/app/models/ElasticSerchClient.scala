@@ -147,7 +147,7 @@ class ElasticSerchClient {
         .`type`("phrase")
 
     )
-    reqSource.size(40)
+    reqSource.size(10)
     req.source(reqSource)
     val result = client.search(req)
     (for(hit <- result.getHits.getHits) yield {

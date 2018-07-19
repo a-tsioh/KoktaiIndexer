@@ -6,7 +6,7 @@ object TsuIm {
   def splitTone(s:String): Syl = {
     val last: Char = s.last
     if(tones.contains(last)) {
-      if(last == '͘') Syl(s.dropRight(2),s.takeRight(2))
+      if(last == '͘') Syl(s.dropRight(3),s.takeRight(3).replace(" ",""))
       else Syl(s.dropRight(1), s.takeRight(1))
     }
     else Syl(s,"")

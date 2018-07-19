@@ -37,14 +37,17 @@ object AppCircuit extends Circuit[RootModel]{
   def registerReaderView(rv: views.ReaderView): Unit = readerView = Some(rv)
 
 
-  def performQuery(q: String) = Effect(
-    Client[api.SharedApi].combinedSearch(q).call().map { wl =>
-      NewResults(wl.map {
-        case api.AnyElem(Some(w),None) => w
-        case api.AnyElem(None, Some(s)) => s
-      })
-    }
-  )
+  def performQuery(q: String) = {
+    resultList.map(_.loading())
+    Effect(
+      Client[api.SharedApi].combinedSearch(q).call().map { wl =>
+        NewResults(wl.map {
+          case api.AnyElem(Some(w), None) => w
+          case api.AnyElem(None, Some(s)) => s
+        })
+      }
+    )
+  }
 
   val handleSearchEvents = new ActionHandler(zoomTo(_.search)) {
     override def handle = {
