@@ -15,7 +15,7 @@ class WordCard(dispatch: Dispatcher, word: api.Word) {
 
   protected val d = div(
     cls:="ui item",
-    div(cls:="ui left floated content", div(cls:="ui green circular small label","詞")),
+    div(cls:="ui left floated content", div(cls:="ui green circular big label","詞")),
     div(cls:="right floated large content", b),
     div(
       cls:="content",

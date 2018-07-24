@@ -39,8 +39,8 @@ class MainController @Inject()(cc: ControllerComponents, assets: Assets) extends
           </div>
           <div class="ui grid">
             <div class="four wide column">
-             <div class="ui bottom attached hidden segment" id="sidebar">
-              </div>
+                 <div class="ui bottom attached hidden segment" id="sidebar">
+                 </div>
             </div>
             <div class="twelve wide column">
               <div class="ui shape">

@@ -8,7 +8,7 @@ class WordPage(dispatch: Dispatcher, w: api.Word) extends Page {
 
   protected val content =
     div(
-      cls:="ui card",
+      cls:="ui segment",
       div(
         cls:="content",
         div(cls:="header",TextRenderer.divOfText(w.orth)),

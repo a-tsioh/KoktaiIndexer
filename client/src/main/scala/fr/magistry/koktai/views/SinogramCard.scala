@@ -15,7 +15,7 @@ class SinogramCard(dispatch: Dispatcher, sinogram: api.Sinogram) {
 
   protected val d = div(
     cls:="ui item",
-    div(cls:="ui left floated content", div(cls:="ui blue circular small label","字")),
+    div(cls:="ui left floated content", div(cls:="ui blue circular big label","字")),
     div(cls:="right floated large content", b),
     div(
       cls:="content",

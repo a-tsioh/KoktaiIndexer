@@ -73,7 +73,7 @@ class ElasticSerchClient {
 
   def insertData[T](idx: KokTaiRecord[T], data: Seq[Node]): Unit = {
     val reqs = for(e <- data.par; cd <- idx.fromXML(e)) yield buildIndexRequest(cd)
-    batchProcessing(1000, reqs.seq, bulkIndex)
+    batchProcessing(5000, reqs.seq, bulkIndex)
   }
 
 
@@ -111,9 +111,9 @@ class ElasticSerchClient {
 
   def indexFile(path:String) = {
     val x = XML.loadFile(path)
+    indexAllSinograms(x)
     indexAllCharDecl(x)
     indexAllChapters(x)
-    indexAllSinograms(x)
     indexAllWords(x)
   }
 
@@ -140,14 +140,16 @@ class ElasticSerchClient {
     val req = new SearchRequest()
     val reqSource = new SearchSourceBuilder()
     reqSource.query(
-      QueryBuilders.multiMatchQuery(query, "orth", "words", "definition")
+      QueryBuilders.multiMatchQuery(query, "orth", "words", "definition", "defTailo", "tailo")
         .field("orth", 3.0f)
         .field("words", 2.0f)
+        .field("tailo", 2.0f)
         .field("definition",1.0f)
+        .field("defTailo", 1.0f)
         .`type`("phrase")
 
     )
-    reqSource.size(10)
+    reqSource.size(30)
     req.source(reqSource)
     val result = client.search(req)
     (for(hit <- result.getHits.getHits) yield {

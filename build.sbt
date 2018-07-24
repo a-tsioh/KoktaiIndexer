@@ -25,8 +25,9 @@ lazy val server = (project in file("server")).settings(commonSettings).settings(
     "org.webjars.bower" % "jquery" % "3.2.1",
     "org.webjars.bower" % "semantic-ui" % "2.2.13",
     "io.suzaku" %% "boopickle" % "1.3.0",
-    "com.lihaoyi" %% "autowire" % "0.2.6"
-    ),
+    "com.lihaoyi" %% "autowire" % "0.2.6",
+    "ch.qos.logback" % "logback-classic" % "1.2.3"
+  ),
   ).enablePlugins(PlayScala).
   dependsOn(sharedJvm)
 
